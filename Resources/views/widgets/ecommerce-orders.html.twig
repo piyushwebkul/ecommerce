@@ -303,7 +303,7 @@
                             app.appView.hideLoader();
                             if(url = xhr.getResponseHeader('Location'))
                                 window.location = url;
-                            app.appView.renderResponseAlert(warningResponse);
+                            app.appView.renderResponseAlert(xhr.responseJSON);
                         }
                     });
                 }

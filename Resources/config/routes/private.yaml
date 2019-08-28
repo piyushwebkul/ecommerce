@@ -3,4 +3,4 @@ uvdesk_ecommerce_integrate_ticket_order_details:
     controller: UVDesk\CommunityPackages\UVDesk\ECommerce\Controller\TicketExtension::integrateECommerceOrderDetails
     methods: [POST, PUT]
     requirements:
-        ticketId: '\d+'
+        ticketId: '0\d+|[1-9]\d*'

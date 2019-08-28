@@ -11,7 +11,7 @@ use UVDesk\CommunityPackages\UVDesk\ECommerce\Entity\ECommerceOrderDetails;
 class TicketExtension
 {
     public function integrateECommerceOrderDetails($id, Request $request, ECommerce $eCommerceConfiguration, EntityManagerInterface $entityManager)
-    {
+    {   
         $params = json_decode($request->getContent(), true);
         $eCommercePlatform = $eCommerceConfiguration->getECommercePlatformByQualifiedName($params['platform']);
 
@@ -19,11 +19,11 @@ class TicketExtension
             return new JsonResponse([
                 'success' => false,
                 'alertClass' => 'error',
-                'alertMessage' => 'Unable to retrieve channel details.',
+                'alertMessage' => 'Unable to retrieve platform details.',
             ], 404);
         } else {
             $eCommerceChannel = $eCommercePlatform->getECommerceChannel($params['channelId']);
-
+            
             if (empty($eCommerceChannel)) {
                 return new JsonResponse([
                     'success' => false,
@@ -34,6 +34,14 @@ class TicketExtension
         }
 
         $eCommerceOrderDetails = $eCommerceChannel->fetchECommerceOrderDetails((array) $params['orderId']);
+        
+        if (empty($eCommerceOrderDetails['orders'])) {
+            return new JsonResponse([
+                'success' => false,
+                'alertClass' => 'error',
+                'alertMessage' => 'Unable to retrieve order details.',
+            ], 404);
+        }
         
         $ticketRepository = $entityManager->getRepository('UVDeskCoreFrameworkBundle:Ticket');
         $eCommerceOrderRepository = $entityManager->getRepository('UVDeskECommercePackage:ECommerceOrderDetails');
