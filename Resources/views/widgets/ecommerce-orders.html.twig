@@ -187,32 +187,54 @@
                                 </div>
                             <% } %>
                         <% }); %>
-                        <div class="uv-element-block product-total">
-                            <% if(orderInstance.total_price) { %>
-                                <span class="uv-margin-right-15">
-                                    <b>{{ 'Total:'|trans }}</b> <%- orderInstance.total_price %>
-                                </span>
-                            <% } %>
-                        </div>
-                        <% if(orderInstance.total_refund) { %>
-                            <div class="uv-element-block product-total">
-                                <span class="uv-margin-right-15">
-                                    <b>{{ 'Refunded:'|trans }}</b> <%= orderInstance.total_refund %>
-                                </span>
-                            </div>
-                        <% } %>
-                    </div>
-                <% } else if ('undefined' != typeof(orderInstance.total_price)) { %>
-                    <div class="uv-element-block">
-                        <div class="uv-element-block product-total">
-                            <% if(orderInstance.total_price) { %>
-                            <span class="uv-margin-right-15">
-                                <b>{{ 'Total:'|trans }}</b> <%- orderInstance.total_price %>
-                            </span>
-                            <% } %>
-                        </div>
                     </div>
                 <% } %>
+                <div class="uv-element-block product-total">
+                    <% if(orderInstance.subtotal_amount) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Subtotal:'|trans }}</b> <%- orderInstance.subtotal_amount %>
+                        </span>
+                    <% } %>
+                </div>
+                <div class="uv-element-block product-total">
+                    <% if(orderInstance.shipping_amount) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Shipping & Handling'|trans }}</b> <%- orderInstance.shipping_amount %>
+                        </span>
+                    <% } %>
+                </div>
+                <div class="uv-element-block product-total">
+                    <% if(orderInstance.discount_amount) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Discount:'|trans }}</b> <%- orderInstance.discount_amount %>
+                        </span>
+                    <% } %>
+                </div>
+                <div class="uv-element-block product-total">
+                    <% if(orderInstance.tax_amount) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Tax:'|trans }}</b> <%- orderInstance.tax_amount %>
+                        </span>
+                    <% } %>
+                </div>
+                <div class="uv-element-block">
+                    <div class="uv-element-block product-total">
+                        <% if(orderInstance.total_price) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Total:'|trans }}</b> <%- orderInstance.total_price %>
+                        </span>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="uv-element-block">
+                    <div class="uv-element-block product-total">
+                        <% if(orderInstance.total_refund) { %>
+                        <span class="uv-margin-right-15">
+                            <b>{{ 'Total Refunded:'|trans }}</b> <%- orderInstance.total_refund %>
+                        </span>
+                        <% } %>
+                    </div>
+                </div>
             <% }); %>
         <% } else { %>
             <div class="uv-element-block">
